@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/admin', function () {
+//    return view('admin.home');
+//});
+
+//Frontend section
+Route::get('/',[App\Http\Controllers\HomeController::class,'home'])->name('user.home');
+
+
+//admin section
+Route::group(['prefix'=>'admin'],function (){
+    Route::get('/home',[App\Http\Controllers\admin\HomeController::class,'home'])->name('admin.home');
+
+    //Category section
+    Route::resource('/category',\App\Http\Controllers\admin\CategoryController::class);
 });
