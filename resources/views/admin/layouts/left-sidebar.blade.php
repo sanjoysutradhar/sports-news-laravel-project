@@ -31,8 +31,8 @@
                     </li>
                     <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-briefcase"></i><span>Sports Item</span> </a>
                         <ul>
-                            <li><a href="action.php?admin=sports-blog-index">All Sports item Blog</a></li>
-                            <li><a href="action.php?admin=sports-blog-create">Add Sports item Blog</a></li>
+                            <li><a href="{{route('blog.index')}}">All Blogs</a></li>
+                            <li><a href="{{route('blog.create')}}">Add Blog</a></li>
                         </ul>
                     </li>
                     <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-people"></i><span>User Management</span> </a>

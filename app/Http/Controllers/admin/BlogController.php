@@ -3,29 +3,29 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CategoryController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $categories=Category::get();
-        return view('admin.category.index',compact('categories'));
+        $blogs=Blog::get();
+        return view('admin.blog.index',compact('blogs'));
     }
-
-    public function categoryStatus(Request $request){
+    public function blogStatus(Request $request){
         if($request->mode=='true'){
-            DB::table('categories')->where('id',$request->id)->update(['status'=>'active']);
+            DB::table('blogs')->where('id',$request->id)->update(['status'=>'active']);
         }
         else{
-            DB::table('categories')->where('id',$request->id)->update(['status'=>'inactive']);
+            DB::table('blogs')->where('id',$request->id)->update(['status'=>'inactive']);
         }
         return response()->json(['msg'=>'Successfully updated status','status'=>true]);
     }
@@ -36,8 +36,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-
-        return view('admin.category.create');
+        $categories=Category::get();
+        return view('admin.blog.create',compact('categories'));
     }
 
     /**
@@ -47,30 +47,30 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getImageUrl($request){
-        $imageName=$request->input('name').time().'.'.$request->file('image')->getClientOriginalExtension();
-        return $request->file('image')->move('images\category',$imageName);//save to public -> images\category folder
+        $imageName=time().'.'.$request->file('image')->getClientOriginalExtension();
+        return $request->file('image')->move('images\blog',$imageName);//save to public -> images\category folder
 
     }
     public function store(Request $request)
     {
-//        $image=$request->file('image');
-//         dd(request()->input('name'));
-//         dd($request->file('image')->getClientOriginalExtension());
+//        return $request->all();
         $this->validate($request,[
-            'name'=>'required',
+            'author'=>'required',
+            'title'=>'required',
+            'category_id'=>'required',
+            'description'=>'required',
         ]);
         $data=$request->all();
         if($request->hasFile('image')){
             $data['image']=$this->getImageUrl($request);
-            }
-        $status=Category::create($data);
+        }
+        $status=Blog::create($data);
         if($status){
-            return redirect()->route('category.index')->with('success','Successfully created category');
+            return redirect()->route('blog.index')->with('success','Successfully created blog');
         }
         else{
             return back()->with('errors','Something went wrong');
         }
-
     }
 
     /**
@@ -92,9 +92,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-//        dd($id);
-        $category=Category::find($id);
-        return view('admin.category.edit',compact('category'));
+        $blog=Blog::find($id);
+        $categories=Category::get();
+        return view('admin.blog.edit',compact(['blog','categories']));
     }
 
     /**
@@ -106,24 +106,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category=Category::find($id);
-        if($category){
+        $blog=Blog::find($id);
+        if($blog){
             $this->validate($request,[
-                'name'=>'required',
+                'author'=>'required',
+                'title'=>'required',
+                'category_id'=>'required',
+                'description'=>'required',
             ]);
             $data=$request->all();
             if($request->hasFile('image')){
                 $data['image']=$this->getImageUrl($request);
             }
-            $status=$category->fill($data)->save();
+            $status=$blog->fill($data)->save();
             if($status){
-                return redirect()->route('category.index')->with('success','Successfully updated category');
+                return redirect()->route('blog.index')->with('success','Successfully update blog');
             }
             else{
                 return back()->with('errors','Something went wrong');
             }
         }
-
     }
 
     /**
@@ -134,13 +136,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category=Category::find($id);
+        $blog=Blog::find($id);
 
-        if($category){
-            $status=$category->delete();
+        if($blog){
+            $status=$blog->delete();
             if($status){
 
-                return redirect()->route('category.index')->with('success','Category successfully deleted');
+                return redirect()->route('blog.index')->with('success','Blog successfully deleted');
             }
             else{
                 return back()->with('errors','Something wrong');

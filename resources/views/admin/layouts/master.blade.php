@@ -62,14 +62,14 @@
 <script src="{{asset('/')}}admin/js/mainscripts.bundle.js"></script>
 <script src="{{asset('/')}}admin/js/sortable-nestable.js"></script>
 <script src="{{asset('/')}}admin/js/index.js"></script>
-
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 @yield('script')
-
 <script>
     setTimeout(function(){
         $('#alert').slideUp()
     }, 2000);
 </script>
+
 </body>
 </html>
 

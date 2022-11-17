@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-
+@section('title'):: Admin ::@endsection
 @section('content')
 <!-- main content  -->
     <div id="main-content">

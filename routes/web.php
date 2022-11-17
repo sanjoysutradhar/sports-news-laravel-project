@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 //Frontend section
 Route::get('/',[App\Http\Controllers\HomeController::class,'home'])->name('user.home');
+Route::get('/details/{id}',[App\Http\Controllers\HomeController::class,'detail'])->name('details.blog');
 
 
 //admin section
@@ -27,5 +30,11 @@ Route::group(['prefix'=>'admin'],function (){
     Route::get('/home',[App\Http\Controllers\admin\HomeController::class,'home'])->name('admin.home');
 
     //Category section
-    Route::resource('/category',\App\Http\Controllers\admin\CategoryController::class);
+    Route::resource('/category',CategoryController::class);
+    Route::post('/category_status',[CategoryController::class,'categoryStatus'])->name('category.status');
+
+    //Blog section
+    Route::resource('/blog',BlogController::class);
+    Route::post('/blog_status',[BlogController::class,'blogStatus'])->name('blog.status');
+
 });

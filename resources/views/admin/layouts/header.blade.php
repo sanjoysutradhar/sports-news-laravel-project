@@ -1,4 +1,6 @@
-<title>:: Admin Pannel ::</title>
+<title>
+    @yield('title')
+</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -13,6 +15,7 @@
 <link rel="stylesheet" href="{{asset('/')}}admin/css/jquery-jvectormap-2.0.3.min.css"/>
 <link rel="stylesheet" href="{{asset('/')}}admin/css/bootstrap-progressbar-3.3.4.min.css">
 <link rel="stylesheet" href="{{asset('/')}}admin/css/morris.min.css" />
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
 
 <!-- MAIN CSS -->

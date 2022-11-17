@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-
+@section('title'):: Category ::@endsection
 @section('content')
     <div id="main-content">
         <div class="container-fluid">
