@@ -47,8 +47,8 @@ class BlogController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getImageUrl($request){
-        $imageName=time().'.'.$request->file('image')->getClientOriginalExtension();
-        return $request->file('image')->move('images\blog',$imageName);//save to public -> images\category folder
+        $imageName=$request->file('image')->getClientOriginalExtension();
+        return $request->file('image')->move('images/blog/',$imageName);//save to public -> images\category folder
 
     }
     public function store(Request $request)

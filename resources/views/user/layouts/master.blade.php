@@ -30,15 +30,15 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="nav float-end">
-
-                        {{--                        <li class=""><a href="action.php?page=dashboard"class="text-secondary nav-link">--}}
-                        {{--                                <img src="" class="pe-2" alt="user" style="height: 25px; width: 30px;">--}}
-                        {{--                                <span></span>--}}
-                        {{--                            </a></li>--}}
-                        {{--                        <li class=""><a href="action.php?page=logout"class="text-secondary nav-link">LogOut</a></li>--}}
-
+                        @auth
+                        <li class=""><a href="{{route('user.dashboard')}}"class="text-secondary nav-link">
+                                <img src="{{asset('/')}}{{auth()->user()->image}}" class="pe-2 " alt="user" style="height: 25px; width: 32px;">
+                                <span>{{auth()->user()->firstName}}</span>
+                            </a></li>
+                        <li class=""><a href="{{route('user.logout')}}"class="text-secondary nav-link">LogOut</a></li>
+                        @else
                         <li class=""><a href="#signin_modal" data-bs-toggle="modal" class="text-secondary nav-link">SignIn</a></li>
-
+                        @endauth
                     </ul>
                 </div>
             </div>
@@ -59,7 +59,8 @@
                         <a href="#"><i class="fa-brands fa-google-plus-g modal-icon-g "></i></a>
                     </div>
                     <div class="card card-body border-0 p-0">
-                        <form action="action.php" method="POST">
+                        <form action="{{route('user.login')}}" method="POST">
+                            @csrf
                             <label class="pt-0" for="">Email</label>
                             <input type="email" name="email" class="form-control" placeholder="your email" required>
 
@@ -68,13 +69,13 @@
                             <input type="password" name="password" class="form-control" required>
 
                             <div class="text-end pb-3"><span class="text-success">Forget password</span></div>
-                            <input type="submit" name="loginBtn" class="btn btn-outline-primary form-control" value="Submit">
+                            <input type="submit" class="btn btn-outline-primary form-control" value="Submit">
                             <!--                            <button type="submit" class="btn btn-outline-primary form-control">Login</button>-->
                         </form>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <span>Not registered? To register click </span><a href="action.php?page=registration" class="nav-link text-success" > here</a>
+                    <span>Not registered? To register click </span><a href="{{route('user.registration')}}" class="nav-link text-success" > here</a>
                 </div>
             </div>
         </div>
@@ -89,7 +90,7 @@
                     <h3 class="float-end ps-1 py-3 text-secondary fw-bold text-uppercase"></h3>
                 </a>
                 <ul class="navbar-nav mx-auto fw-bold text-secondary ">
-                    <li><a href="#" class="nav-link py-4 ">Home</a></li>
+                    <li><a href="{{route('user.home')}}" class="nav-link py-4 ">Home</a></li>
                     <li><a href="#" class="nav-link py-4 ">Cricket</a></li>
                     <li><a href="#" class="nav-link py-4 ">Football</a></li>
                     <li><a href="#" class="nav-link py-4 ">About Us</a></li>
@@ -254,7 +255,11 @@
         document.documentElement.scrollTop = 0;
     }
 </script>
-
+<script>
+    setTimeout(function(){
+        $('#alert').slideUp()
+    }, 2000);
+</script>
 <script>
     @yield('script')
 </script>

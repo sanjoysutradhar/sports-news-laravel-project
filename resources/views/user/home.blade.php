@@ -1,6 +1,7 @@
 @extends('user.layouts.master')
 @section('content')
     {{--banner--}}
+    @include('admin.layouts.notification')
     <section class="">
         <div class="row">
             <div id="banner-owl-demo" class="owl-carousel owl-theme">

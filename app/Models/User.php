@@ -8,19 +8,26 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @method static create(array $data)
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    private static $user,$image,$directory,$imageName;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+    'firstName',
+    'lastName',
+    'email',
+    'image',
+    'phone',
+    'address',
+    'password',
     ];
 
     /**
@@ -41,4 +48,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getImageUrl($request){
+        self::$image=$request->file('image');
+        self::$imageName= self::$image->getClientOriginalName();
+        self::$directory='images/user/';
+        self::$image->move(self::$directory,self::$imageName);
+        return self::$directory.self::$imageName;
+    }
 }
