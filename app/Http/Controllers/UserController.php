@@ -83,7 +83,7 @@ class UserController extends Controller
 
             session()->put('user',$request->email);
 
-            return redirect()->route('user.home')->with('success', 'Successfully logged in');
+            return redirect()->route('user.dashboard')->with('success', 'Successfully logged in');
         }
         else{
             return back()->with('error','invalid Email and password');

@@ -4,6 +4,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="row col-md-10 bg-white rounded-1 py-5">
+                    @include('admin.layouts.notification')
                     <div class="col-md-3 border-end border-dark text-center ">
                         <img src="{{$user->image}}" alt="" class="" style="border-radius: 100%" height="200" width="200">
 

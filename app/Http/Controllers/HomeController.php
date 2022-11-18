@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +25,8 @@ class HomeController extends Controller
     }
     public function detail($id){
         $blog=Blog::find($id);
-        return view('user.detail',compact('blog'));
+        $comments=Comment::where('blog_id',$blog->id)->get();
+        return view('user.detail',compact(['blog','comments']));
     }
 
 

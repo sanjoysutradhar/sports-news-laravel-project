@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,11 @@ Route::get('/logout',[UserController::class,'userLogout'])->name('user.logout');
 Route::get('/dashboard',[UserController::class,'userDashboard'])->name('user.dashboard');
 Route::get('/profile/edit',[UserController::class,'userProfileEdit'])->name('user.profileEdit');
 Route::post('/profile/update/{id}',[UserController::class,'userProfileUpdate'])->name('user.profileUpdate');
+
+Route::post('/comment',[CommentController::class,'commentStore'])->name('user.comment');
+Route::get('/comment/delete/{id}',[CommentController::class,'commentDelete'])->name('comment.delete');
+Route::post('/comment/update/{id}',[CommentController::class,'commentUpdate'])->name('comment.update');
+
 
 
 
