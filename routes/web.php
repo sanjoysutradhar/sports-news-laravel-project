@@ -23,8 +23,12 @@ use App\Http\Controllers\CommentController;
 //});
 
 //Frontend section
-Route::get('/',[App\Http\Controllers\HomeController::class,'home'])->name('user.home');
-Route::get('/details/{id}',[App\Http\Controllers\HomeController::class,'detail'])->name('details.blog');
+Route::get('/',[HomeController::class,'home'])->name('user.home');
+Route::get('/details/{id}',[HomeController::class,'detail'])->name('details.blog');
+Route::get('/cricket/blog',[HomeController::class,'cricketBlog'])->name('cricket.blog');
+Route::get('/football/blog',[HomeController::class,'footballBlog'])->name('football.blog');
+Route::get('/about-us',[HomeController::class,'aboutUs'])->name('about-us');
+Route::get('/contact-us',[HomeController::class,'contactUs'])->name('contact-us');
 
 //user section
 Route::get('/registration',[UserController::class,'registration'])->name('user.registration');
@@ -39,6 +43,8 @@ Route::post('/profile/update/{id}',[UserController::class,'userProfileUpdate'])-
 Route::post('/comment',[CommentController::class,'commentStore'])->name('user.comment');
 Route::get('/comment/delete/{id}',[CommentController::class,'commentDelete'])->name('comment.delete');
 Route::post('/comment/update/{id}',[CommentController::class,'commentUpdate'])->name('comment.update');
+
+
 
 
 

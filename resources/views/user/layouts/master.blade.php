@@ -91,10 +91,10 @@
                 </a>
                 <ul class="navbar-nav mx-auto fw-bold text-secondary ">
                     <li><a href="{{route('user.home')}}" class="nav-link py-4 ">Home</a></li>
-                    <li><a href="#" class="nav-link py-4 ">Cricket</a></li>
-                    <li><a href="#" class="nav-link py-4 ">Football</a></li>
-                    <li><a href="#" class="nav-link py-4 ">About Us</a></li>
-                    <li><a href="#" class="nav-link py-4 ">Contact</a></li>
+                    <li><a href="{{route('cricket.blog')}}" class="nav-link py-4 ">Cricket</a></li>
+                    <li><a href="{{route('football.blog')}}" class="nav-link py-4 ">Football</a></li>
+                    <li><a href="{{route('about-us')}}" class="nav-link py-4 ">About Us</a></li>
+                    <li><a href="{{route('contact-us')}}" class="nav-link py-4 ">Contact</a></li>
                 </ul>
 
                 <ul class="navbar-nav">

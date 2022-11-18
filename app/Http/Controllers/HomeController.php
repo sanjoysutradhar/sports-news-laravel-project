@@ -29,5 +29,22 @@ class HomeController extends Controller
         return view('user.detail',compact(['blog','comments']));
     }
 
+    public function cricketBlog(){
+        $cricketCategory=Category::where('name','cricket')->first();
+        $cricketBlogs=Blog::where(['category_id'=>$cricketCategory->id,'status'=>'active'])->get();
+        return view('user.cricket-blog',compact('cricketBlogs'));
+    }
+    public function footballBlog(){
+        $footballCategory=Category::where('name','football')->first();
+        $footballBlogs=Blog::where('category_id',$footballCategory->id)->orderBy('id','DESC')->get();
+        return view('user.football-blog',compact('footballBlogs'));
+    }
+    public function aboutUs(){
+        return view('user.about-us');
+    }
+    public function contactUs(){
+        return view('user.contact-us');
+    }
+
 
 }

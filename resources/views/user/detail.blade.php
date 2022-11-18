@@ -27,9 +27,9 @@
                 <div class="col-md-12">
                     <h3>Comments</h3>
                     @foreach($comments as $comment)
-                        <div class="row rounded-1 pb-2 mb-3" style="background-color: #cdfbc9; border: 2px">
+                        <div class="row rounded-1 pb-0 mb-3" style="background-color: #cdfbc9; border: 2px">
                             <div class="col-md-6 pt-2">
-                                <img src="{{asset('/')}}{{$comment->commenter_image}}" alt="" class="" style="border-radius: 100%" height="70" width="70">
+                                <img src="{{asset('/')}}{{$comment->commenter_image}}" alt="" class="" style="border-radius: 100%" height="50" width="50">
                                 <span class="fw-semibole pt-2">{{$comment->commenter_name}}</span>
                             </div>
                             <div class="col-md-6 pt-2">
@@ -68,7 +68,7 @@
                                 </ul>
 {{--                                <a href="" class="text-decoration-none float-end">Reply</a>--}}
                             </div>
-                            <div class="pt-2">
+                            <div class="pt-2 pb-0">
                                 <p class="small text-muted">{{$comment->comment}}</p>
                             </div>
                         </div>
